@@ -1,0 +1,28 @@
+# Development Dockerfile for sheets-service
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy root package.json and yarn.lock
+COPY package.json yarn.lock ./
+
+# Copy workspace configuration
+COPY packages/common/package.json ./packages/common/
+COPY packages/sheets-service/package.json ./packages/sheets-service/
+
+# Install all dependencies (including dev dependencies)
+RUN yarn install --frozen-lockfile
+
+# Copy source code
+COPY packages/common ./packages/common
+COPY packages/sheets-service ./packages/sheets-service
+
+# Set working directory to the service
+WORKDIR /app/packages/sheets-service
+
+# Expose port
+EXPOSE 3000
+
+# Start in development mode with hot reloading
+CMD ["yarn", "start:dev"] 

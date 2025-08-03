@@ -1,0 +1,1 @@
+export { PlaceBetDto, ParamUserIdDto } from './PlaceBetDto'; 

@@ -1,0 +1,1 @@
+export { GetGameDto } from './GetGameDto'; 

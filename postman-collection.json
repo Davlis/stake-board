@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "58bfaf6f-d73b-46ae-9311-3faf41cca23e",
+		"name": "Sports Betting Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16817337"
+	},
+	"item": [
+		{
+			"name": "Bet Service",
+			"item": [
+				{
+					"name": "POST Bets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"ef104c6285d1e04833a848d273a7b4ae\",\n    \"gameId\": \"ddc28b3a-4b38-438e-893c-2bda14f4bebf\",\n    \"selectedOutcome\": \"home\",\n    \"amount\": 2,\n    \"bookmaker\": \"betclic_fr\",\n    \"market\": \"h2h\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/bets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Bet Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bets/refresh-status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bets",
+								"refresh-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Bets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"ef104c6285d1e04833a848d273a7b4ae\",\n    \"gameId\": \"31094b82-5740-43e9-91ec-5e0b31b6d354\",\n    \"selectedOutcome\": \"home\",\n    \"amount\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/bets/user/:userId/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bets",
+								"user",
+								":userId",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "ef104c6285d1e04833a848d273a7b4ae"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard Service (BFF)",
+			"item": [
+				{
+					"name": "GET Games with Odds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/sheets/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"sheets",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Bets Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/sheets/users/:userId/bets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"sheets",
+								"users",
+								":userId",
+								"bets"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "ef104c6285d1e04833a848d273a7b4ae"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Bet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"ef104c6285d1e04833a848d273a7b4ae\",\n    \"gameId\": \"ddc28b3a-4b38-438e-893c-2bda14f4bebf\",\n    \"selectedOutcome\": \"home\",\n    \"amount\": 2,\n    \"bookmaker\": \"betclic_fr\",\n    \"market\": \"h2h\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/sheets/users/:userId/bets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"sheets",
+								"users",
+								":userId",
+								"bets"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "ef104c6285d1e04833a848d273a7b4ae"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Odds Service",
+			"item": [
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/odds/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"odds",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Random Results",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/odds/games/random",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"odds",
+								"games",
+								"random"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Game with Odds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/odds/games/ddc28b3a-4b38-438e-893c-2bda14f4bebf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"odds",
+								"games",
+								"ddc28b3a-4b38-438e-893c-2bda14f4bebf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Odds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/odds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"odds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
